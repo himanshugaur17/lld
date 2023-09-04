@@ -1,10 +1,11 @@
 package jvm.memory.shared;
 
 import java.util.Set;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 public class JavaObject {
     private int referenceCount;
-    private Set<JavaObject> heapObjectRefs;
+    private Set<JavaObject> heapObjectRefs = new ConcurrentSkipListSet<>();
 
     public JavaObject(int referenceCount) {
         this.referenceCount = referenceCount;
@@ -14,11 +15,20 @@ public class JavaObject {
         return referenceCount;
     }
 
-    public void setReferenceCount(int referenceCount) {
-        this.referenceCount = referenceCount;
+    public synchronized int increaseReferenceCount() {
+        return ++this.referenceCount;
     }
 
-    public Set<JavaObject> getHeapObjectRefs() {
+    public synchronized int decreaseReferenceCount() {
+        return --this.referenceCount;
+    }
+    /*
+     * There won't be any deleteObjectFromHeap method, because until
+     * this object exists, the reference will always be there.
+     */
+
+    public Set<JavaObject> addObjectToHeap(JavaObject obj) {
+        heapObjectRefs.add(obj);
         return heapObjectRefs;
     }
 

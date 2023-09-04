@@ -8,6 +8,15 @@ import jvm.memory.shared.JavaObject;
 public class ThreadStack {
     private Stack<Frame> frames;
 
+    public void popFrame() {
+        Frame frameToBePopped = frames.peek();
+        /*
+         * Here we will do the garabge
+         * collection by updating the references to an object in heap
+         */
+        frames.pop();
+    }
+
 }
 
 class Frame {
