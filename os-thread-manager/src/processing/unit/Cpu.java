@@ -16,7 +16,9 @@ public class Cpu implements CpuInterface {
         this.currRunningThread = thread;
         int switchContextAfter = new Random().nextInt(10);
         while (!thread.getInstructionSet().isEmpty() && switchContextAfter > 0) {
-            Instruction instruction = thread.getInstructionSet().poll();
+            Instruction instruction = thread.getInstructionSet().peek();
+            if (instruction.isSystemCallInstruction())
+                return false;
             runInstruction(instruction);
             switchContextAfter--;
         }

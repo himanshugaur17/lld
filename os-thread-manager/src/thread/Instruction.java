@@ -5,6 +5,30 @@ public class Instruction {
     private String instructionDesc;
     private Integer instructionId;
 
+    public boolean isSystemCallInstruction() {
+        return isSystemCallInstruction;
+    }
+
+    public void setSystemCallInstruction(boolean isSystemCallInstruction) {
+        this.isSystemCallInstruction = isSystemCallInstruction;
+    }
+
+    public String getInstructionDesc() {
+        return instructionDesc;
+    }
+
+    public void setInstructionDesc(String instructionDesc) {
+        this.instructionDesc = instructionDesc;
+    }
+
+    public Integer getInstructionId() {
+        return instructionId;
+    }
+
+    public void setInstructionId(Integer instructionId) {
+        this.instructionId = instructionId;
+    }
+
     @Override
     public String toString() {
         return "Instruction [isSystemCallInstruction=" + isSystemCallInstruction + ", instructionDesc="
