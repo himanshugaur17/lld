@@ -4,8 +4,8 @@ import factory.product.Pizza;
 
 public class NonVegPizzaStore extends PizzaStore {
 
-    public NonVegPizzaStore(Integer pizzaStoreId) {
-        super("CDE Non veg pizza store", pizzaStoreId);
+    public NonVegPizzaStore(Integer pizzaStoreId, SimplePizzaBaseFactory pizzaBaseFactory) {
+        super("CDE Non veg pizza store", pizzaStoreId, pizzaBaseFactory);
         // TODO Auto-generated constructor stub
     }
 
