@@ -17,8 +17,31 @@ public class LoadBalancer {
     }
 
     private void constructNodeHashingCircle() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'constructNodeHashingCircle'");
+        for (Node node : nodes) {
+            for (int i = 0; i < node.vNodes; i++) {
+                circle.put(hashRecursively(node.getNodeKey(), node.vNodes), node);
+            }
+        }
     }
 
+    /*
+     * We are using recursive hash strategy (or we could have used different hash
+     * function / vNode)
+     * so that for each vNode we get a unique representation
+     * on consistent hashring.
+     */
+    private Long hashRecursively(String key, int times) {
+        Long hashedValue = hashingStrategy.hash(key);
+        times--;
+        while (times-- > 0) {
+            hashedValue = hashingStrategy.hash(hashedValue.toString());
+        }
+        return hashedValue;
+    }
+
+    /*
+     * Overall time complexity becomes
+     * O(log(N*K))
+     */
+    private Node getNodeForKey(long hash)
 }
