@@ -43,5 +43,18 @@ public class LoadBalancer {
      * Overall time complexity becomes
      * O(log(N*K))
      */
-    private Node getNodeForKey(long hash)
+    private Node getNodeForKey(long hash) {
+        Node node = circle.get(hash);
+        if (node != null)
+            return node;
+        /*
+         * ceilingEntry itself takes wraps around to the first element
+         * incase there is no entry having key greater than hash
+         */
+        return circle.ceilingEntry(hash).getValue();
+    }
+
+    public Node serveRequest(Request req) {
+        return getNodeForKey(req.hashCode());
+    }
 }

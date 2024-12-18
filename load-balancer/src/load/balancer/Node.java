@@ -1,6 +1,5 @@
 package load.balancer;
 
-import java.util.TreeMap;
 
 public class Node {
     int vNodes;
