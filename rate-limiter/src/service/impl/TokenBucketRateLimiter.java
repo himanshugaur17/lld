@@ -26,10 +26,13 @@ public class TokenBucketRateLimiter implements IRateLimiter {
     public boolean shouldAllowReq(String key, long timestamp) {
         String serviceName = serviceConfig.getServiceName();
         Token token = tokenRateLimiterDao.getToken(serviceName, key);
-        if (token.getLastRefreshed() + getRefreshTokenTimeInMillis() < timestamp) {
-            token.setLastRefreshed(timestamp);
-            token.setTokenCount(Math.max(maxCapacity, token.getTokenCount() + tokenRefillCount) - 1);
-            token = tokenRateLimiterDao.updateToken(token);
+        if (token == null) {
+            token = new Token(tokenRefillCount, timestamp, serviceName + key);
+            refill(timestamp, token);
+            return true;
+        } else if (token.getLastRefreshed() + getRefreshTokenTimeInMillis() < timestamp) {
+            refill(timestamp, token);
+            tokenRateLimiterDao.updateToken(token);
             return true;
         } else {
             if (token.getTokenCount() > 0) {
@@ -40,6 +43,11 @@ public class TokenBucketRateLimiter implements IRateLimiter {
             return false;
         }
 
+    }
+
+    private void refill(long timestamp, Token token) {
+        token.setLastRefreshed(timestamp);
+        token.setTokenCount(Math.min(maxCapacity, token.getTokenCount() + tokenRefillCount) - 1);
     }
 
     private long getRefreshTokenTimeInMillis() {

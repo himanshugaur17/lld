@@ -8,20 +8,12 @@ public class TokenRateLimiterDao implements ITokenRateLimiterDao {
 
     @Override
     public Token getToken(String serviceName, String key) {
-        return cache.get(serviceName+key);
+        return cache.get(serviceName + key);
     }
 
     @Override
-    public Token updateToken(Token token) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateToken'");
+    public void updateToken(Token token) {
+        cache.put(token.getKey(), token);
     }
-
-    @Override
-    public Token refillToken(Token token) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'refillToken'");
-    }
-
 
 }
