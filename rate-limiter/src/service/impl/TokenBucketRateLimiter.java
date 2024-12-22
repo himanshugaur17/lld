@@ -35,6 +35,11 @@ public class TokenBucketRateLimiter implements IRateLimiter {
             tokenRateLimiterDao.updateToken(token);
             return true;
         } else {
+            /*
+             * RACE Condition:
+             * Two Operations involved:
+             * GET and then SET
+             */
             if (token.getTokenCount() > 0) {
                 token.setTokenCount(token.getTokenCount() - 1);
                 tokenRateLimiterDao.updateToken(token);
