@@ -22,13 +22,16 @@ public class LRUEvictionPolicy<KEY> implements EvictionPolicy<KEY> {
         this.keyToNodeMap.computeIfAbsent(
                 key, (k) -> new Node<>(k));
         Node<KEY> node = this.keyToNodeMap.get(key);
+        if (node.getLeft() != null && node.getRight() != null)
+            this.dll.removeNode(node);
         this.dll.addNodeToStart(node);
     }
 
     @Override
     public Optional<KEY> evict() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'evict'");
+        Node<KEY> lastNode = dll.removeLastNode();
+        keyToNodeMap.remove(lastNode);
+        return Optional.ofNullable(lastNode.getKey());
     }
 
 }

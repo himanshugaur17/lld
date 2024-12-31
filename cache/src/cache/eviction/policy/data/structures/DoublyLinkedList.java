@@ -23,17 +23,19 @@ public class DoublyLinkedList<KEY> {
 
     }
 
-    public void removeNode(Node<KEY> node) {
+    public Node<KEY> removeNode(Node<KEY> node) {
         Node<KEY> rNode = node.getRight();
         Node<KEY> lNode = node.getLeft();
         lNode.setRight(rNode);
         rNode.setLeft(lNode);
+        return node;
     }
 
-    public void removeLastNode() {
+    public Node<KEY> removeLastNode() {
         Node<KEY> lastNode = tail.getLeft();
         Node<KEY> secondLastNode = lastNode.getLeft();
         secondLastNode.setRight(tail);
         tail.setLeft(secondLastNode);
+        return lastNode;
     }
 }

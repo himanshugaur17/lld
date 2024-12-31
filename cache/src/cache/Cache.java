@@ -1,11 +1,7 @@
 package cache;
 
-public class Cache<KEY, VALUE> {
-    public VALUE get(KEY key){
-        return null;
-    }
+public interface Cache<KEY, VALUE> {
+    public VALUE get(KEY key);
 
-    public void set(KEY key, VALUE value){
-        
-    }
+    public void set(KEY key, VALUE value);
 }
