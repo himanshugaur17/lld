@@ -2,3 +2,5 @@ snake-ladder/bin
 .vscode
 load-balancer/bin
 rate-limiter/bin
+facebook/bin
+distributed-job-scheduler/bin
