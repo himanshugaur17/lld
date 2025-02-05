@@ -15,6 +15,7 @@ public class JobAssignerServiceImpl implements IDistJobSchedulerObserver, Runnab
     private final LinkedBlockingQueue<Job> jobs = new LinkedBlockingQueue<>();
     private final List<WorkerNode> workerNodes = new ArrayList<>();
     private final JobWorkerNodeMatcherAlgo jobWorkerNodeMatcherAlgo = new DefJobNodeMatcher();
+    private final WorkerNodeServiceImpl workerNodeServiceImpl = new WorkerNodeServiceImpl();
 
     @Override
     public void run() {
@@ -41,7 +42,7 @@ public class JobAssignerServiceImpl implements IDistJobSchedulerObserver, Runnab
             if (!match)
                 continue;
 
-            wN.executeJob(job);
+            workerNodeServiceImpl.execute(job, wN);
         }
     }
 
