@@ -4,3 +4,4 @@ load-balancer/bin
 rate-limiter/bin
 facebook/bin
 distributed-job-scheduler/bin
+url-shortner/bin
