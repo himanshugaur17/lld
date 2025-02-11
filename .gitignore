@@ -5,3 +5,6 @@ rate-limiter/bin
 facebook/bin
 distributed-job-scheduler/bin
 url-shortner/bin
+splitwise/bin
+thread-safe-builder/bin
+producer-consumer/bin
