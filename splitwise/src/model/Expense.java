@@ -6,8 +6,9 @@ public class Expense {
     int id;
     String description;
     SplitType splitType;
-    List<Consumption> consumptions;
+    List<ExpenseShare> consumptions;
     User paidBy;
+    double amount;
 }
 
 enum SplitType {
