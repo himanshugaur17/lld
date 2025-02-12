@@ -13,9 +13,10 @@ public class PercentageExpenseShare extends ExpenseShare {
     }
 
     @Override
-    ExpenseShare proceesExpenseShare(Expense e) {
-        this.setShare((percentage * e.amount) / 100);
-        return this;
-    }
+        public
+        ExpenseShare proceesExpenseShare(Expense e) {
+            this.setShare((percentage * e.amount) / 100);
+            return this;
+        }
 
 }

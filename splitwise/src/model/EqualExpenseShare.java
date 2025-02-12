@@ -7,7 +7,7 @@ public class EqualExpenseShare extends ExpenseShare {
     }
 
     @Override
-    ExpenseShare proceesExpenseShare(Expense e) {
+    public ExpenseShare proceesExpenseShare(Expense e) {
         int participants = e.consumptions.size();
         this.setShare(e.amount / participants);
         return this;

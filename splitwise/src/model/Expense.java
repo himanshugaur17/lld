@@ -9,6 +9,30 @@ public class Expense {
     List<ExpenseShare> consumptions;
     User paidBy;
     double amount;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public SplitType getSplitType() {
+        return splitType;
+    }
+
+    public List<ExpenseShare> getConsumptions() {
+        return consumptions;
+    }
+
+    public User getPaidBy() {
+        return paidBy;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
 }
 
 enum SplitType {

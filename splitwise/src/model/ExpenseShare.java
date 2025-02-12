@@ -17,7 +17,7 @@ public abstract class ExpenseShare {
         return share;
     }
 
-    abstract ExpenseShare proceesExpenseShare(Expense e);
+    public abstract ExpenseShare proceesExpenseShare(Expense e);
 
     public void setShare(double share) {
         this.share = share;

@@ -7,8 +7,9 @@ public class UnequalExpenseShare extends ExpenseShare {
     }
 
     @Override
-    ExpenseShare proceesExpenseShare(Expense e) {
-        return this;
-    }
+        public
+        ExpenseShare proceesExpenseShare(Expense e) {
+            return this;
+        }
 
 }

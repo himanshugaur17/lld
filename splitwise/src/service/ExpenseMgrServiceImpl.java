@@ -20,8 +20,11 @@ public class ExpenseMgrServiceImpl implements IExpenseMgrService {
 
     @Override
     public Expense createNewExpense(Expense expense) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createNewExpense'");
+        expense.getConsumptions().forEach(expShare -> expShare.proceesExpenseShare(expense));
+        for (ExpenseObserver eObs : expenseObservers)
+            eObs.onExpenseCreated(expense);
+        return expense;
+
     }
 
     @Override

@@ -4,7 +4,7 @@ public class User {
     private final int id;
     private final String email;
     private final String name;
-    private double balance = 0;
+    private volatile double balance = 0;
 
     public double getBalance() {
         return balance;
@@ -30,6 +30,10 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public void updateBalance(double d) {
+        setBalance(balance + d);
     }
 
 }
