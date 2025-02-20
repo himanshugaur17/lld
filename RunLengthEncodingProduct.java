@@ -24,3 +24,34 @@ public class RunLengthEncodingProduct {
         return result;
     }
 }
+
+class Solution {
+    private int travel(char[] wS, char prev, int n, int k, String res, int index, int count, StringBuilder sb) {
+        if (index == n) {
+            count++;
+            if (count == k) {
+                res = sb.toString();
+                return k;
+            }
+            return count;
+        }
+        int length = sb.length()-1;
+        for (int i = 0; i < 3 && count < k; i++) {
+            if (wS[i] != prev) {
+                sb.append(wS);
+                count = travel(wS, wS[i], n, k, res, index + 1, count, sb);
+                sb.setLength(length);
+            }
+        }
+        
+        return count;
+    }
+
+    public String getHappyString(int n, int k) {
+        String res = "";
+        char[] wS = new char[] { 'a', 'b', 'c' };
+        StringBuilder sb = new StringBuilder();
+        travel(wS, 'd', n, k, res, 0, 0, sb);
+        return res;
+    }
+}
